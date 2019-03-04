@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'current_quote_view.dart';
+import 'exchange_view.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -30,6 +33,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  final List<Widget> _children = [
+    CurrentQuoteView(),
+    ExchangeView()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _buildBody(),
+      body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -59,9 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildBody() {
-    return Container();
-  }
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
